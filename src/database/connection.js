@@ -1,11 +1,8 @@
-const knex = require("knex");
-const configuration = require("../../knexfile");
+const knex = require('knex')
+const configuration = require('../../knexfile')
 
-const config =
-  process.env.NODE_ENV.trim() === "test"
-    ? configuration.test
-    : configuration.development;
+const config = process.env.NODE_ENV === 'test' ? configuration.test : configuration.development // Seleciona o banco de dados de Test ou Produção 
 
-const connection = knex(config);
+const connection = knex(config)
 
-module.exports = connection;
+module.exports = connection

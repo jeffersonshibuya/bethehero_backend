@@ -1,27 +1,28 @@
-const generateUniqueId = require("../utils/generateUniqueId");
-const connection = require("../database/connection");
+const connection = require('../database/connection')
+const generateUniqueID = require('../../src/utils/generateUniqueID')
 
 module.exports = {
-  async list(request, response) {
-    const res = await connection("ongs").select("*");
 
-    return response.json(res);
-  },
+    async index (req,res) {
+        const ongs = await connection('ongs').select('*')
 
-  async create(request, response) {
-    const { name, email, whatsapp, city, uf } = request.body;
+        return res.json({ ongs })
+    },
+    async create (req,res){
+        const { name, email, whatsapp, city, uf } = req.body // a variavel RequestBody recebe o corpo da requisição
+        console.log(req.body)
 
-    const id = generateUniqueId();
+        const id = generateUniqueID()
 
-    await connection("ongs").insert({
-      id,
-      name,
-      email,
-      whatsapp,
-      city,
-      uf,
-    });
+        await connection('ongs').insert({
+            id,
+            name,
+            email,
+            whatsapp,
+            city,
+            uf
+        })
 
-    return response.json({ id });
-  },
-};
+        return res.json({ id })
+    }
+}
