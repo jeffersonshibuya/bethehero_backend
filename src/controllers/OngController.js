@@ -1,5 +1,5 @@
 const connection = require("../database/connection");
-const generateUniqueID = require("../../src/utils/generateUniqueID");
+const generateUniqueId = require("../../src/utils/generateUniqueId");
 
 module.exports = {
   async index(req, res) {
@@ -10,7 +10,7 @@ module.exports = {
   async create(req, res) {
     const { name, email, whatsapp, city, uf } = req.body; // a variavel RequestBody recebe o corpo da requisição
 
-    const id = generateUniqueID();
+    const id = generateUniqueId();
 
     await connection("ongs").insert({
       id,
